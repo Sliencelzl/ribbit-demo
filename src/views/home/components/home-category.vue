@@ -15,6 +15,11 @@
             >{{ sub.name }}</router-link
           >
         </template>
+        <!-- 骨架样式组件 -->
+        <template v-else>
+            <xtx-skeleton width="60px" height="18px" style="margin-right:5px" bg="rgba(255,255,255,0.2)"/>
+            <xtx-skeleton width="50px" height="18px" bg="rgba(255,255,255,0.2)"/>
+        </template>
       </li>
     </ul>
     <!-- 弹层 -->
@@ -54,8 +59,10 @@
 import { computed, reactive, ref } from "vue";
 import { findBrand } from "@/api/home"
 import { useStore } from "vuex";
+import xtxSkeleton from '@/components/library/xtx-skeleton.vue';
 
 export default {
+  components: { xtxSkeleton },
   name: "HomeCategory",
   setup() {
     const store = useStore();
@@ -234,5 +241,16 @@ export default {
           }
         }
       }
+}
+.xtx-skeleton {
+  animation: fade 1s linear infinite alternate;
+}
+@keyframes fade {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>
